@@ -1,0 +1,43 @@
+<XMLDB xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" PATH="report/langdashboard/db" VERSION="2018052000" COMMENT="XMLDB file for Moodle report/langdashboard" xsi:noNamespaceSchemaLocation="../../../lib/xmldb/xmldb.xsd">
+    <TABLES>
+        <TABLE NAME="langdashboard_attempts" COMMENT="Defines langdashboard_attempts" NEXT="langdashboard_skills" PREVIOUS="langdashboard_placements">
+            <FIELDS>
+                <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true" NEXT="courseid"/>
+                <FIELD NAME="courseid" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false" PREVIOUS="userid" NEXT="userid" />
+                <FIELD NAME="userid" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false" PREVIOUS="courseid" NEXT="quizid"/>
+                <FIELD NAME="quizid" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false" PREVIOUS="userid" NEXT="grammarscore"/>
+                <FIELD NAME="grammarscore" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false" PREVIOUS="quizid" NEXT="vocabscore"/>
+                <FIELD NAME="vocabscore" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false" PREVIOUS="grammarscore" NEXT="comprehensionscore"/>
+                <FIELD NAME="comprehensionscore" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false" PREVIOUS="vocabscore" NEXT="discoursescore"/>
+                <FIELD NAME="discoursescore" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false" PREVIOUS="comprehensionscore" NEXT="cummulativescore"/>
+                <FIELD NAME="cummulativescore" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false" PREVIOUS="discoursescore" />
+            </FIELDS>
+            <KEYS>
+                <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+            </KEYS>
+            <INDEXES>
+                <INDEX NAME="id" UNIQUE="true" FIELDS="id"/>
+            </INDEXES>
+        </TABLE>
+        <TABLE NAME="question_grades" COMMENT="Defines question_grades" PREVIOUS="langdashboard_skills">
+            <FIELDS>
+                <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true" NEXT="questionid" />
+                <FIELD NAME="questionid" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" PREVIOUS="id" NEXT="courseid" />
+                <FIELD NAME="courseid" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" DEFAULT="0" PREVIOUS="questionid" NEXT="quizattemptid" />
+                <FIELD NAME="quizattemptid" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" DEFAULT="0" PREVIOUS="courseid" NEXT="quizid" />
+                <FIELD NAME="quizid" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" DEFAULT="0" PREVIOUS="quizattemptid" NEXT="userid" />
+                <FIELD NAME="userid" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" DEFAULT="0" PREVIOUS="quizid" NEXT="categoryid" />
+                <FIELD NAME="categoryid" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" DEFAULT="0" PREVIOUS="userid" NEXT="category" />
+                <FIELD NAME="categories" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false" PREVIOUS="categoryid" NEXT="grade"/>
+                <FIELD NAME="grade" TYPE="number" LENGTH="10" NOTNULL="false" DEFAULT="0" SEQUENCE="false" DECIMALS="5" PREVIOUS="category" NEXT="maxgrade"/>
+                <FIELD NAME="maxgrade" TYPE="number" LENGTH="10" NOTNULL="false" DEFAULT="0" SEQUENCE="false" DECIMALS="5" PREVIOUS="grade"/>
+            </FIELDS>
+            <KEYS>
+                <KEY NAME="primary" TYPE="primary" FIELDS="id" />
+            </KEYS>
+            <INDEXES>
+                <INDEX NAME="id" UNIQUE="true" FIELDS="id" />
+            </INDEXES>
+        </TABLE>
+    </TABLES> 
+</XMLDB>
