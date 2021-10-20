@@ -6,7 +6,7 @@
  *
  * @package    report
  * @subpackage langdashboard
- * @copyright  2018 Carly J Born
+ * @copyright  2018 Carly J Born, 2019 Walt Li
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
